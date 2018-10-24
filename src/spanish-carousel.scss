@@ -1,0 +1,122 @@
+$spanish-carousel-height: 37rem;
+$spanish-carousel-velocity: .5s;
+$spanish-carousel-index-position-right-lg: calc(50% - 54rem);
+$spanish-carousel-index-position-right-md: calc(50% - 43rem);
+$spanish-carousel-index-position-right-sm: calc(50% - 30rem);
+$spanish-carousel-screen-lg: 1200px;
+$spanish-carousel-screen-md: 992px;
+$spanish-carousel-screen-sm: 768px;
+
+// Carousel
+.spanish-carousel {
+  position: relative;
+  height: $spanish-carousel-height;
+  overflow: hidden;
+  & > section > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    &.spanish-carousel__current-slide {
+      transition: transform $spanish-carousel-velocity;
+      transform: translateX(0);
+    }
+    &.spanish-carousel__removed-slide {
+      transition: transform $spanish-carousel-velocity;
+      transform: translateX(100%);
+    }
+  }
+  & > aside {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+    margin-top: 5rem;
+    @media (max-width: $spanish-carousel-screen-sm) {
+      bottom: 0;
+      flex-direction: row;
+      align-items: flex-end;
+      right: 0;
+      width: 100%;
+    }
+    @media (min-width: $spanish-carousel-screen-sm){
+      right: $spanish-carousel-index-position-right-sm;
+    }
+    @media (min-width: $spanish-carousel-screen-md){
+      right: $spanish-carousel-index-position-right-md;
+    }
+    @media (min-width: $spanish-carousel-screen-lg){
+      right: $spanish-carousel-index-position-right-lg;
+    }
+    & > a {
+      &:last-child {
+        @media(max-width: $spanish-carousel-screen-sm) {
+          margin-right: 0;
+        }
+      }
+      @media(max-width: $spanish-carousel-screen-sm) {
+        width: 2rem;
+        height: 2rem;
+        background-color: #fff;
+        border-radius: 50%;
+        margin-right: 2rem;
+      }
+      &:active, &:focus {
+        outline: none;
+      }
+    }
+    & > * {
+      margin-bottom: 2rem;
+      color: white;
+      opacity: 0.65;
+      &:hover, &:active, &:focus {
+        color: white;
+        text-decoration: none;
+      }
+      &:hover, &.spanish-carousel__selected-index {
+        opacity: 1;
+        & > span {
+          @media(min-width: $spanish-carousel-screen-sm) {
+            display: inline-block;
+          }
+        }
+      }
+      & > span {
+        color: inherit;
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-right: 1.5rem;
+        display: none;
+        transition: all 0.5s ease-in;
+      }
+      & > img {
+        border-radius: 50%;
+        display: none;
+        @media (min-width: $spanish-carousel-screen-sm) {
+          max-width: 5rem;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  svg {
+    position: absolute;
+    right: -0.5rem;
+    display: none;
+    @media(min-width: $spanish-carousel-screen-sm) {
+      display: inline-block;
+    }
+  }
+}
+
+// Circular progress bar
+.progress-ring__circle {
+  //transition: stroke-dashoffset 0.20s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%,
+}
